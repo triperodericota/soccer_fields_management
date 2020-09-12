@@ -1,0 +1,88 @@
+{% extends 'soccer_fields_management/base.html' %}
+{% block maincontent %}
+    <ul class="nav nav-tabs" id="myTab" role="tablist">
+      <li class="nav-item" role="presentation">
+        <a class="nav-link active" id="all" data-toggle="tab" href="#all" role="tab" aria-controls="all" aria-selected="true">Todas</a>
+      </li>
+      <li class="nav-item" role="presentation">
+        <a class="nav-link" id="amenited-tab" data-toggle="tab" href="#amenitied" role="tab" aria-controls="amenited" aria-selected="false">Con sint&eacute;tico</a>
+      </li>
+        <li class="nav-item" role="presentation">
+            <a class="nav-link" id="with-locked-tab" data-toggle="tab" href="#with-locked" role="tab" aria-controls="with-locked" aria-selected="false">Con vestuario</a>
+        </li>
+    </ul>
+    <div class="tab-content" id="myTabContent">
+      <div class="tab-pane fade show active" id="all" role="tabpanel" aria-labelledby="all-tab">
+              <table class="table">
+      <thead>
+        <tr>
+          <th scope="col">#</th>
+          <th scope="col">Tipo</th>
+          <th scope="col">Vestuario disponible?</th>
+          <th scope="col">Iluminación</th>
+            <th scope="col">Cesped sintético</th>
+        </tr>
+      </thead>
+        <tbody>
+            {% for sf in soccer_fields %}
+                <tr>
+                    <th scope="row"><a href="{% url 'soccer_field_detail' sf.pk %}"> {{ sf.code }}</a></th>
+                    <td>{{ sf.type }}</td>
+                    <td>{{ sf.locker_room }}</td>
+                    <td>{{ sf.ilumination }}</td>
+                    <td>{{ sf.syntehtic_grass }}</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+      </div>
+      <div class="tab-pane fade" id="amenited" role="tabpanel" aria-labelledby="amenited-tab">
+          <table class="table">
+      <thead>
+        <tr>
+          <th scope="col">#</th>
+          <th scope="col">Tipo</th>
+          <th scope="col">Vestuario disponible?</th>
+          <th scope="col">Iluminación</th>
+            <th scope="col">Cesped sintético</th>
+        </tr>
+      </thead>
+        <tbody>
+            {% for sf in amenities_soccer_fields %}
+                <tr>
+                    <th scope="row"><a href="{% url 'soccer_field_detail' sf.pk %}"> {{ sf.code }}</a></th>
+                    <td>{{ sf.type }}</td>
+                    <td>{{ sf.locker_room }}</td>
+                    <td>{{ sf.ilumination }}</td>
+                    <td>{{ sf.syntehtic_grass }}</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+      </div>
+      <div class="tab-pane fade" id="with-locked" role="tabpanel" aria-labelledby="with-locked-tab">
+          <table class="table">
+      <thead>
+        <tr>
+          <th scope="col">#</th>
+          <th scope="col">Tipo</th>
+          <th scope="col">Vestuario disponible?</th>
+          <th scope="col">Iluminación</th>
+            <th scope="col">Cesped sintético</th>
+        </tr>
+      </thead>
+        <tbody>
+            {% for sf in locker_room %}
+                <tr>
+                    <th scope="row"><a href="{% url 'soccer_field_detail' sf.pk %}"> {{ sf.code }}</a></th>
+                    <td>{{ sf.type }}</td>
+                    <td>{{ sf.locker_room }}</td>
+                    <td>{{ sf.ilumination }}</td>
+                    <td>{{ sf.syntehtic_grass }}</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+      </div>
+    </div>
+{% endblock maincontent %}
